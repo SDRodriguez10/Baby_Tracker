@@ -7,7 +7,6 @@ if __name__ == "__main__":
     if os.path.exists(ex_path):
         print("Hello World")
     else:
-        print("oh noooo")
         os.system("mkdir ~/.baby_data")
         os.system("mkdir ~/.baby_data/data")
 
