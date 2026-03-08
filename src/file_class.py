@@ -4,14 +4,14 @@ from pathlib import Path
 import csv
 import os
 
-class FeedLog:
-    def __init__(self, debug):
+class FileClass:
+    def __init__(self, name, loc, debug):
         # init filename and location
-        self.file_name = "feedLog.csv"
-        self.file_loc  = "~/.baby_data"
+        self.file_name = name
+        self.file_loc  = loc
         # Check if file exists
         self.data_path = ""
-        self.feed_list = []
+        self.data_list = []
         self.gen_path()
         self.set_data()
         if (debug):
@@ -31,11 +31,11 @@ class FeedLog:
             with open(self.data_path, mode='r', newline='', encoding='utf-8') as csv_file:
                 dict_reader = csv.DictReader(csv_file)
                 for row in dict_reader:
-                    self.feed_list.append(row)
+                    self.data_list.append(row)
         return 0
 
     def get_data(self):
-        print("Printing feedLog.csv:")
-        for row in self.feed_list:
+        print("Printing " + name + ":")
+        for row in self.data_list:
             print(row)
         return 0
