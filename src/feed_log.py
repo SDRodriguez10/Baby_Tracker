@@ -1,41 +1,8 @@
-# This is the class that manages the feeding schedule add/update/remove
 
-from pathlib import Path
-import csv
-import os
+from file_class import FileClass
+class FeedLog(FileClass):
+    def __init__(self, name, loc, debug):
+        super().__init__(name, loc, debug)
 
-class FeedLog:
-    def __init__(self, debug):
-        # init filename and location
-        self.file_name = "feedLog.csv"
-        self.file_loc  = "~/.baby_data"
-        # Check if file exists
-        self.data_path = ""
-        self.feed_list = []
-        self.gen_path()
-        self.set_data()
-        if (debug):
-            self.get_data()
+    def add_data(self):
 
-    def gen_path(self):
-        # If this is the first time running then gen the file path
-        glued_path = self.file_loc + "/" + self.file_name
-        self.data_path = os.path.expanduser(glued_path)
-        # If the file doesn't exist make it, if it does leave it alone
-        open(self.data_path, "a").close
-        return 0
-
-    def set_data(self):
-        if (os.path.exists(self.data_path)):
-            print(str(self.file_name) + " found! Importing existing data\n")
-            with open(self.data_path, mode='r', newline='', encoding='utf-8') as csv_file:
-                dict_reader = csv.DictReader(csv_file)
-                for row in dict_reader:
-                    self.feed_list.append(row)
-        return 0
-
-    def get_data(self):
-        print("Printing feedLog.csv:")
-        for row in self.feed_list:
-            print(row)
-        return 0

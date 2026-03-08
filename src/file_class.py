@@ -27,7 +27,7 @@ class FileClass:
 
     def set_data(self):
         if (os.path.exists(self.data_path)):
-            print(str(self.file_name) + " found! Importing existing data\n")
+            print(str(self.file_name) + " found! Importing existing data")
             with open(self.data_path, mode='r', newline='', encoding='utf-8') as csv_file:
                 dict_reader = csv.DictReader(csv_file)
                 for row in dict_reader:
@@ -35,7 +35,8 @@ class FileClass:
         return 0
 
     def get_data(self):
-        print("Printing " + name + ":")
+        print("Printing " + self.file_name + ":")
         for row in self.data_list:
             print(row)
+        print("\n")
         return 0

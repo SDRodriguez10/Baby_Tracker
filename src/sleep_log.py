@@ -1,13 +1,5 @@
 
-class SleepLog:
-    def __init__(self):
-        # init filename and location
-        self.file_name = "sleepLog.csv"
-        self.file_loc  = "~/.baby_data"
-        
-        self.data_path = ""
-        self.sleep_list = []
-        self.gen_path()
-        self.set_data()
-        if (debug):
-            self.get_data()
+from file_class import FileClass
+class SleepLog(FileClass):
+    def __init__(self, name, loc, debug):
+        super().__init__(name, loc, debug)
