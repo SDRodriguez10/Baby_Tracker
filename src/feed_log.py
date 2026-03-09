@@ -9,7 +9,7 @@ class FeedLog(FileClass):
         self.data_row = [None]*len(self.header)
         self.start_time = None
         self.end_time = None
-        self.count = 0
+        self.counter = 0
         self.toggle = 0
         self.selected_val = 1
 
@@ -17,7 +17,7 @@ class FeedLog(FileClass):
         self.data_row = [None]*len(self.header)
         self.start_time = None
         self.end_time = None
-        self.count = 0
+        self.counter = 0
         self.toggle = 0
         self.selected_val = 1
 

@@ -20,7 +20,7 @@ def main():
     else:
         print("~/.baby_data not found, creating it now")
         os.system("mkdir ~/.baby_data")
-        gen_files(ex_path, file_names)
+        #gen_files(ex_path, file_names)
     
     # Create the tracker objects
     feed_tracker = FeedLog(file_names[0], data_loc, debug)
@@ -31,13 +31,19 @@ def main():
     app = QApplication(sys.argv)
 
     # Create instance of Window
-    baby_gui = BabyGui()
+    baby_gui = BabyGui(feed_tracker)
     
     # Show all the widgets
     baby_gui.show()
 
     # Start application's event loop
     sys.exit(app.exec())
-
+    print("Final feed state: ")
+    print("Start time: ", feed_tracker.start_time)
+    print("End time: ", feed_tracker.end_time)
+    print("Counter: ", feed_tracker.counter)
+    print("Toggle: ", feed_tracker.toggle)
+    print("Selected number: ", feed_tracker.selected_number)
+    
 if __name__ == "__main__":
     main()
