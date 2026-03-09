@@ -21,8 +21,9 @@ class FeedLog(FileClass):
         self.counter = 0
         self.toggle = 0
         self.selected_number = 1
-        print("DATA LIST")
-        print(self.data_list)
+        if debug:
+            print("DATA LIST")
+            print(self.data_list)
         
     def clear_data(self):
         self.data_row = [None]*len(self.header)
@@ -37,24 +38,33 @@ class FeedLog(FileClass):
 
         if self.start_time is None:
             self.start_time = time_now
-            print(self.start_time)
+            if self.debug:
+                print(self.start_time)
         else:
             self.end_time = time_now
-            print(self.end_time)
+            if self.debug:
+                print("End time: ")
+                print(self.end_time)
+                
 
     def increment_counter(self):
         # TO count number of times switch position during feed, or number of feeds idk
         self.counter += 1
-        print(self.counter)
-    
+        if self.debug:
+            print(self.counter)
+
     def toggle_value(self):
         # To toggle between left and right breast, 0 and 1
         self.toggle = 1 - self.toggle
-        print(self.toggle)
+        if self.debug:
+            print("Toggle value: ")
+            print(self.toggle)
 
     def set_number(self, n):
         self.selected_number = n
-        print(self.selected_number)
+        if self.debug:
+            print("Selected number: ")
+            print(self.selected_number)
 
     def publish_data(self):
         if self.end_time is None:

@@ -1,3 +1,4 @@
+#codebase
 # This is the class that manages the feeding schedule add/update/remove
 
 from pathlib import Path
@@ -14,7 +15,8 @@ class FileClass:
         self.data_list = []
         self.gen_path()
         self.set_data()
-        if (debug):
+        self.debug = debug
+        if (self.debug):
             self.get_data()
 
     def gen_path(self):
