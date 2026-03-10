@@ -12,7 +12,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QHBoxLayout
 import sys
 
 def main():
-    debug = 1
+    debug = 0
     file_names = ["feedLog.csv", "sleepLog.csv", "diaperLog.csv"]
     data_loc = "~/.baby_data"
     ex_path = os.path.expanduser(data_loc) # expanded path because ~

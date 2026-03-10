@@ -21,14 +21,9 @@ class SleepLog(FileClass):
         if len(self.data_list) == 0:
             self.write_data(self.header)
         
-        time_list = [self.start_time, self.end_time]
-        pub_time_list = ["",""]
-        for idx, time in enumerate(time_list):
-            time_split = time.split(":")
-            pub_time_list[idx] = time_split[0] + time_split[1]
-        
-        self.data_row[self.header.index('sleep_start')] = pub_time_list[0]
-        self.data_row[self.header.index('sleep_end')] = pub_time_list[1]
+        # Map data to correct header value
+        self.data_row[self.header.index('sleep_start')] = self.start_time
+        self.data_row[self.header.index('sleep_end')] = self.end_time
         self.data_row[self.header.index('sleep_quality')] = self.selected_number
         if None not in self.data_row:
             # publish
@@ -36,8 +31,6 @@ class SleepLog(FileClass):
             print(self.data_row)
             self.write_data(self.data_row)
             self.clear_data()
-            print("Data Cleared")
-            print(self.data_row)
             # reset
         else:
             # error

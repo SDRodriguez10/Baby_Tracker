@@ -45,7 +45,7 @@ class FeedLog(FileClass):
         if self.debug:
             print("Toggle value: ")
             print(self.toggle)
-            
+
     def write_data(self, data):
         with open(self.data_path, mode='a', newline='', encoding='utf-8') as csv_file:
             writer = csv.writer(csv_file)
@@ -58,14 +58,8 @@ class FeedLog(FileClass):
         if len(self.data_list) == 0:
             self.write_data(self.header)
         
-        time_list = [self.start_time, self.end_time]
-        pub_time_list = ["",""]
-        for idx, time in enumerate(time_list):
-            time_split = time.split(":")
-            pub_time_list[idx] = time_split[0] + time_split[1]
-        
-        self.data_row[self.header.index('feed_start')] = pub_time_list[0]
-        self.data_row[self.header.index('feed_stop')] = pub_time_list[1]
+        self.data_row[self.header.index('feed_start')] = self.start_time
+        self.data_row[self.header.index('feed_stop')] = self.end_time
         self.data_row[self.header.index('feed_switch')] = self.counter
         self.data_row[self.header.index('feed_start_loc')] = self.toggle
         self.data_row[self.header.index('feed_strength')] = self.selected_number
