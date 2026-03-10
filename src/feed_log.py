@@ -5,7 +5,7 @@ import csv
 class FeedLog(FileClass):
     def __init__(self, name, loc, debug):
         """
-        Feed log contains 4 pieces of data rn
+        Feed log contains 5 pieces of data rn
             feed_start - start time
             feed_stop  - end time
             feed_switch? - how many times switch position
@@ -31,21 +31,7 @@ class FeedLog(FileClass):
         self.end_time = None
         self.counter = 0
         self.toggle = 0
-        self.selected_number = 1
-    
-    def record_time(self):
-        time_now = QTime.currentTime().toString("HH:mm:ss")
-
-        if self.start_time is None:
-            self.start_time = time_now
-            if self.debug:
-                print(self.start_time)
-        else:
-            self.end_time = time_now
-            if self.debug:
-                print("End time: ")
-                print(self.end_time)
-                
+        self.selected_number = 1      
 
     def increment_counter(self):
         # TO count number of times switch position during feed, or number of feeds idk
@@ -59,12 +45,11 @@ class FeedLog(FileClass):
         if self.debug:
             print("Toggle value: ")
             print(self.toggle)
-
-    def set_number(self, n):
-        self.selected_number = n
-        if self.debug:
-            print("Selected number: ")
-            print(self.selected_number)
+            
+    def write_data(self, data):
+        with open(self.data_path, mode='a', newline='', encoding='utf-8') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(data)
 
     def publish_data(self):
         if self.end_time is None:
@@ -97,10 +82,5 @@ class FeedLog(FileClass):
             # error
             print("error")
             print(self.data_row)
-
-    def write_data(self, data):
-        with open(self.data_path, mode='a', newline='', encoding='utf-8') as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(data)
 
 

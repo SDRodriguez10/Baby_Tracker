@@ -4,7 +4,8 @@
 from pathlib import Path
 import csv
 import os
-
+from PyQt6.QtCore import QTime
+import csv
 class FileClass:
     def __init__(self, name, loc, debug):
         # init filename and location
@@ -42,3 +43,26 @@ class FileClass:
             print(row)
         print("\n")
         return 0
+    
+    def record_time(self):
+        time_now = QTime.currentTime().toString("HH:mm:ss")
+
+        if self.start_time is None:
+            self.start_time = time_now
+            if self.debug:
+                print(self.start_time)
+        else:
+            self.end_time = time_now
+            if self.debug:
+                print("End time: ")
+                print(self.end_time)
+
+    def set_number(self, n):
+        self.selected_number = n
+        if self.debug:
+            print("Selected number: ")
+            print(self.selected_number)
+    
+    
+    
+    
