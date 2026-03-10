@@ -49,10 +49,14 @@ class FileClass:
 
         if self.start_time is None:
             self.start_time = time_now
+            time_split = self.start_time.split(":")
+            self.start_time = time_split[0] + ":" + time_split[1]
             if self.debug:
                 print(self.start_time)
         else:
             self.end_time = time_now
+            time_split = self.end_time.split(":")
+            self.end_time = time_split[0] + ":" + time_split[1]
             if self.debug:
                 print("End time: ")
                 print(self.end_time)

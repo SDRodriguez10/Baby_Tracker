@@ -23,7 +23,6 @@ def main():
     else:
         print("~/.baby_data not found, creating it now")
         os.system("mkdir ~/.baby_data")
-        #gen_files(ex_path, file_names)
     
     # Create the tracker objects
     feed_tracker = FeedLog(file_names[0], data_loc, debug)
@@ -50,27 +49,6 @@ def main():
 
     # Start application's event loop
     sys.exit(app.exec())
-    print("Final feed state: ")
-    print("Start time: ", feed_tracker.start_time)
-    print("End time: ", feed_tracker.end_time)
-    print("Counter: ", feed_tracker.counter)
-    print("Toggle: ", feed_tracker.toggle)
-    print("Selected number: ", feed_tracker.selected_number)
-
-    print("Final sleep state: ")
-    print("Start time: ", sleep_tracker.start_time)
-    print("End time: ", sleep_tracker.end_time)
-    print("Counter: ", sleep_tracker.counter)
-    print("Toggle: ", sleep_tracker.toggle)
-    print("Selected number: ", sleep_tracker.selected_number)
-
-    print("Final poop state: ")
-    print("Start time: ", poop_tracker.start_time)
-    print("Diaper type: ", poop_tracker.diaper_type)
-    print("Pee amount: ", poop_tracker.pee_amount)
-    print("Poo amount: ", poop_tracker.poo_amount)
-    print("Blowout: ", poop_tracker.blowout)
-    print("Color: ", poop_tracker.color)
     
 if __name__ == "__main__":
     main()

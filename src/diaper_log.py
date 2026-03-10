@@ -5,7 +5,7 @@ from file_class import FileClass
 class DiaperLog(FileClass):
     def __init__(self, name, loc, debug):
         """
-        Diaper log contains 3 pieces of data rn
+        Diaper log contains 6 pieces of data rn
             diaper_time - time of diaper change
             diaper_type - pee(0), poo(1), both(2)
             pee_amount - how much pee? 1-5 (only triggered if diaper_type is pee or both)
@@ -72,8 +72,6 @@ class DiaperLog(FileClass):
             writer.writerow(data)
             
     def publish_data(self):
-        print(self.start_time)
-        print(self.diaper_type)
         if self.start_time is None or self.diaper_type is None:
             return 0
         

@@ -39,8 +39,11 @@ class DiaperGui(QWidget):
                 btn.clicked.connect(lambda checked, t=dtype: self.on_diaper_type_clicked(t))
                 self.type_buttons[dtype] = btn
                 layout.addWidget(btn)
+                
 
             # Pee Amount Label and Spin Box
+            self.state.set_pee_amount(-1) # default value
+            self.state.set_poo_amount(-1) # default value
             self.pee_label = QLabel("Pee Amount")
             self.pee_label.hide()
             layout.addWidget(self.pee_label)
@@ -50,6 +53,7 @@ class DiaperGui(QWidget):
             self.pee_spinbox.setValue(3)
             self.pee_spinbox.hide()
             layout.addWidget(self.pee_spinbox)
+            self.pee_spinbox.valueChanged.connect(self.state.set_pee_amount)
 
             # Poo Amount Label and Spin Box
             self.poo_label = QLabel("Poo Amount")
@@ -61,6 +65,7 @@ class DiaperGui(QWidget):
             self.poo_spinbox.setValue(3)
             self.poo_spinbox.hide()
             layout.addWidget(self.poo_spinbox)
+            self.poo_spinbox.valueChanged.connect(self.state.set_poo_amount)
 
             # Blowout Button
             self.blowout_button = QPushButton("Blowout: No")
@@ -77,6 +82,7 @@ class DiaperGui(QWidget):
             self.color_spinbox.setRange(1, 5)
             self.color_spinbox.setValue(3)
             layout.addWidget(self.color_spinbox)
+            self.color_spinbox.valueChanged.connect(self.state.set_color)
 
             # Publish Button
             self.publish_button = QPushButton("Publish Diaper Data")
@@ -114,6 +120,7 @@ class DiaperGui(QWidget):
                 self.pee_spinbox.show()
                 self.poo_label.show()
                 self.poo_spinbox.show()
+            self.state.set_diaper_type(diaper_type)
 
         def on_blowout_clicked(self):
             self.blowout = not self.blowout
@@ -123,6 +130,7 @@ class DiaperGui(QWidget):
             else:
                 self.blowout_button.setText("Blowout: No")
                 self.blowout_button.setStyleSheet("background-color: lightgray")
+            self.state.set_blowout(self.blowout)
 
         def on_publish_button_clicked(self):
             self.state.publish_data()
@@ -137,3 +145,5 @@ class DiaperGui(QWidget):
             for btn in self.type_buttons.values():
                 btn.setStyleSheet("")
             self.publish_button.setEnabled(False)
+            self.state.set_pee_amount(-1) # default value
+            self.state.set_poo_amount(-1) # default value
